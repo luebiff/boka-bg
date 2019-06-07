@@ -1,8 +1,24 @@
-import Vue from 'vue'
-import App from './App.vue'
+import Vue from "vue";
+import firebase from "firebase";
+import App from "./App.vue";
+import router from "./router";
+import firebaseConfig from "./config";
 
-Vue.config.productionTip = false
+Vue.config.productionTip = false;
 
-new Vue({
-  render: h => h(App),
-}).$mount('#app')
+let app = "";
+
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+
+// const db = firebase.database();
+
+firebase.auth().onAuthStateChanged(() => {
+  if (!app) {
+    /* eslint-disable no-new */
+    app = new Vue({
+      router,
+      render: h => h(App)
+    }).$mount("#app");
+  }
+});
