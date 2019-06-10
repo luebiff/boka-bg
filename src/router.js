@@ -5,8 +5,15 @@ import Router from "vue-router";
 import Home from "@/views/Home";
 import Login from "@/views/Login";
 import SignUp from "@/views/SignUp";
+import Boka from "@/views/Boka";
+import Profile from "@/views/Profile";
+import Info from "@/views/Info";
+
+import Vuetify from "vuetify";
+import "vuetify/dist/vuetify.min.css";
 
 Vue.use(Router);
+Vue.use(Vuetify);
 
 const router = new Router({
   routes: [
@@ -32,6 +39,30 @@ const router = new Router({
       path: "/home",
       name: "Home",
       component: Home,
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
+      path: "/profile",
+      name: "Profile",
+      component: Profile,
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
+      path: "/boka",
+      name: "Boka",
+      component: Boka,
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
+      path: "/info",
+      name: "Info",
+      component: Info,
       meta: {
         requiresAuth: true
       }

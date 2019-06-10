@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>Välkommen till Britas Gränds boknings sida</h1>
+    <h1>Välkommen {userName} till Britas Gränds boknings sida</h1>
   </div>
 </template>
 
