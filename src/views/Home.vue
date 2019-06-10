@@ -1,32 +1,25 @@
 <template>
   <div class="home">
+    <Navigation />
     <Welcome />
-    <button @click="logout">Logout</button>
     <Calender />
   </div>
 </template>
 
 <script>
-import firebase from "firebase";
 // @ is an alias to /src
 
 import Welcome from "@/components/Welcome.vue";
 import Calender from "@/components/Calender.vue";
+import Navigation from "@/components/Navigation.vue";
+
 export default {
   name: "home",
   components: {
     Welcome,
-    Calender
+    Calender,
+    Navigation
   },
-  methods: {
-    logout: function() {
-      firebase
-        .auth()
-        .signOut()
-        .then(() => {
-          this.$router.replace("login");
-        });
-    }
-  }
+  methods: {}
 };
 </script>
