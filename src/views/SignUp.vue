@@ -1,31 +1,42 @@
 <template>
   <div class="sign-up">
     <p>Let's create a new account !</p>
-    <input
-      class="sigup-input"
-      type="text"
-      v-model="email"
-      placeholder="Email"
-    /><br />
-    <input
-      class="sigup-input"
-      type="password"
-      v-model="password"
-      placeholder="Password"
-    /><br />
-    <button @click="signUp">Sign Up</button>
+    <form class="form" @submit.prevent="signUp">
+      <input
+        class="sigup-input"
+        type="text"
+        v-model="displayName"
+        placeholder="Display Name"
+      /><br />
+      <input
+        class="sigup-input"
+        type="text"
+        v-model="email"
+        placeholder="Email"
+      /><br />
+      <input
+        class="sigup-input"
+        type="password"
+        v-model="password"
+        placeholder="Password"
+      /><br />
+      <button type="submit">Sign Up</button>
+    </form>
     <span>or go back to <router-link to="/login">login</router-link>.</span>
   </div>
 </template>
 
  <script>
 import firebase from "firebase";
+import { users, user } from "../main.js";
 export default {
   name: "signUp",
   data() {
     return {
       email: "",
-      password: ""
+      password: "",
+      displayName: "",
+      uid: ""
     };
   },
   methods: {
@@ -39,7 +50,13 @@ export default {
           },
           err => {
             alert("Oops. " + err.message);
-          }
+          },
+          users.push({
+            email: this.email,
+            //password: this.password,
+            displayName: this.displayName
+            //uid: firebase.auth().currentUser.uid
+          })
         );
     }
   }
