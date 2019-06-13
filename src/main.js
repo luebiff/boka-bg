@@ -11,7 +11,11 @@ let app = "";
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 
-// const db = firebase.database();
+const db = firebase.database();
+
+// Users
+export const users = db.ref("users");
+export const user = uid => db.ref(`users/${uid}`);
 
 firebase.auth().onAuthStateChanged(() => {
   if (!app) {
