@@ -28,7 +28,7 @@
 
  <script>
 import firebase from "firebase";
-import { users, user } from "../main.js";
+import { user } from "../main.js";
 export default {
   name: "signUp",
   data() {
@@ -45,18 +45,16 @@ export default {
         .auth()
         .createUserWithEmailAndPassword(this.email, this.password)
         .then(
-          user => {
+          authUser => {
+            user(authUser.user.uid).set({
+              email: this.email,
+              displayName: this.displayName
+            });
             this.$router.replace("home");
           },
           err => {
             alert("Oops. " + err.message);
-          },
-          users.push({
-            email: this.email,
-            //password: this.password,
-            displayName: this.displayName
-            //uid: firebase.auth().currentUser.uid
-          })
+          }
         );
     }
   }
