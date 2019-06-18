@@ -11,6 +11,7 @@
 import firebase from "firebase";
 import Navigation from "@/components/Navigation.vue";
 import { users, user } from "../main.js";
+
 export default {
   name: "Profile",
   components: {
@@ -26,12 +27,14 @@ export default {
         });
     },
     test: function() {
-      users.on("value", snapshot => {
-        const userObj = snapshot.val();
+      const uid = firebase.auth().currentUser.uid;
+      user(uid).on("value", snapshot => {
+        const obj = snapshot.val();
         //const dbUsers = snapshot.val();
-        const userID = firebase.auth().currentUser;
-        console.log(userID);
+        //const userID = firebase.auth().currentUser;
+        console.log(obj.displayName);
       });
+      //console.log(user.displayName);
     }
   }
 };

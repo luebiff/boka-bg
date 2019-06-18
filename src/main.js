@@ -13,6 +13,8 @@ firebase.initializeApp(firebaseConfig);
 
 const db = firebase.database();
 
+// Reference to database
+
 // Users
 export const users = db.ref("users");
 export const user = uid => db.ref(`users/${uid}`);
