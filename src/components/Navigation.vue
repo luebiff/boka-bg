@@ -20,7 +20,8 @@
     <ul class="navigationList">
       <li class="navigationItem">
         <router-link to="profile">
-          Profil {userName}
+          <span v-if="displayName">{{ displayName }}</span>
+          <span v-else> Profil </span>
         </router-link>
       </li>
     </ul>
@@ -28,12 +29,28 @@
 </template>
 
 <script>
+import { user } from "@/main.js";
+import firebase from "firebase";
 export default {
   name: "Navigation",
   data: () => {
     return {};
   },
-  computed: {},
+  computed: {
+    displayName() {
+      let result;
+      const uid = firebase.auth().currentUser.uid;
+      user(uid).on("value", snapshot => {
+        const userObj = snapshot.val();
+        result = userObj.displayName;
+      });
+      const nameCapitalized = result.charAt(0).toUpperCase() + result.slice(1);
+      return nameCapitalized;
+    }
+  },
+  beforeMount() {
+    //this.viewName();
+  },
   methods: {}
 };
 </script>

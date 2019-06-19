@@ -91,7 +91,7 @@
 <script>
 import Navigation from "@/components/Navigation.vue";
 import firebase from "firebase";
-import { users, user } from "../main.js";
+import { users } from "../main.js";
 export default {
   name: "boka",
   components: { Navigation },

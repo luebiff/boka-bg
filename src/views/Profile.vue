@@ -10,7 +10,7 @@
 <script>
 import firebase from "firebase";
 import Navigation from "@/components/Navigation.vue";
-import { users, user } from "../main.js";
+import { user } from "../main.js";
 
 export default {
   name: "Profile",
@@ -27,16 +27,17 @@ export default {
         });
     },
     test: function() {
+      /* let result;
       const uid = firebase.auth().currentUser.uid;
       user(uid).on("value", snapshot => {
-        const obj = snapshot.val();
-        //const dbUsers = snapshot.val();
-        //const userID = firebase.auth().currentUser;
-        console.log(obj.displayName);
+        const userObj = snapshot.val();
+        result = userObj.displayName;
+        console.log(result);
       });
-      //console.log(user.displayName);
+      return result; */
     }
-  }
+  },
+  computed: {}
 };
 </script>
 
